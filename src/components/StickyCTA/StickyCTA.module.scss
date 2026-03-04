@@ -1,0 +1,59 @@
+@use "../../styles/abstracts" as a;
+
+.wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    z-index: a.$z-sticky;
+    pointer-events: none;
+}
+
+.inner {
+    @include a.container;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: a.$space-3;
+    align-items: center;
+
+    padding: a.$space-3;
+    border-radius: a.$radius-xl;
+    background: rgba(15, 23, 36, 0.72);
+    border: 1px solid rgba(232, 238, 252, 0.12);
+    backdrop-filter: blur(10px);
+    box-shadow: a.$shadow-2;
+
+    pointer-events: auto;
+}
+
+.text {
+    font-size: 13px;
+    color: a.$color-muted;
+
+    strong {
+        color: a.$color-text;
+    }
+
+    span {
+        display: none;
+    }
+
+    @include a.mq(a.$bp-md) {
+        span {
+            display: inline;
+        }
+    }
+}
+
+.cta {
+    @include a.button-base;
+    @include a.focus-ring;
+    height: 42px;
+    background: linear-gradient(135deg, rgba(110, 231, 255, 0.20), rgba(167, 139, 250, 0.14));
+    border-color: rgba(110, 231, 255, 0.26);
+
+    &:hover {
+        border-color: rgba(110, 231, 255, 0.42);
+        transform: translateY(-1px);
+    }
+}

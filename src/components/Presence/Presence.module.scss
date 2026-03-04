@@ -1,0 +1,144 @@
+@use "../../styles/abstracts" as a;
+
+.section {
+    padding: a.$space-10 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.inner {
+    @include a.container;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: a.$space-9;
+    align-items: center;
+
+    @media (max-width: a.$bp-lg) {
+        grid-template-columns: 1fr;
+        gap: a.$space-8;
+    }
+}
+
+.textContent {
+    max-width: 600px;
+}
+
+.mainTitle {
+    font-size: clamp(32px, 3.5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: a.$space-6;
+    color: a.$color-text;
+
+    span {
+        color: a.$color-accent;
+        display: block;
+        margin-top: a.$space-2;
+    }
+}
+
+.lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: a.$color-muted;
+    margin-bottom: a.$space-8;
+}
+
+.opsFeature {
+    margin-bottom: a.$space-4;
+}
+
+.opsTitle {
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: a.$space-4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: a.$color-text;
+    opacity: 0.6;
+}
+
+.notes {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+
+    li {
+        margin-bottom: a.$space-5;
+        font-size: 15px;
+        color: a.$color-muted;
+        line-height: 1.6;
+
+        strong {
+            color: a.$color-text;
+            display: block;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+    }
+}
+
+/* Map Section */
+.mapSide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mapWrapper {
+    width: 100%;
+    max-width: 500px;
+    background: radial-gradient(circle at center, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+    border-radius: 40px;
+    position: relative;
+    top: 80px;
+}
+
+.svgMap {
+    width: 100%;
+    height: auto;
+}
+
+.geoBase {
+    fill: #e2e8f0;
+    stroke: #ffffff;
+    stroke-width: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.geoActive {
+    fill: #cbd5e1;
+    stroke: #ffffff;
+    stroke-width: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.dot {
+    fill: a.$color-accent;
+    stroke: white;
+    stroke-width: 2px;
+    filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+
+    &:hover {
+        r: 8px;
+        fill: #0284c7;
+    }
+}
+
+.mapLabel {
+    font-size: 10px;
+    font-weight: 800;
+    fill: a.$color-text;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    pointer-events: none;
+    background: white;
+    user-select: none;
+}

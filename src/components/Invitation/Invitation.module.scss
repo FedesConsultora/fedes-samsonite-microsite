@@ -1,0 +1,143 @@
+@use "sass:color";
+@use "../../styles/abstracts" as a;
+
+.section {
+    padding: 0 0 a.$space-10;
+}
+
+.inner {
+    @include a.container;
+}
+
+.grid {
+    display: grid;
+    gap: a.$space-8;
+    align-items: center;
+
+    @include a.mq(a.$bp-lg) {
+        grid-template-columns: 1.25fr 0.75fr;
+    }
+}
+
+.card {
+    background: white;
+    border: 1px solid a.$color-border;
+    border-radius: a.$radius-xl;
+    padding: a.$space-6;
+    position: relative;
+    overflow: hidden;
+    box-shadow: a.$shadow-2;
+
+    @include a.mq(a.$bp-md) {
+        padding: a.$space-9;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -20%;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.08), transparent 60%);
+        transform: translate(10%, -10%);
+        pointer-events: none;
+    }
+}
+
+.videoCard {
+    background: #000;
+    border-radius: a.$radius-xl;
+    overflow: hidden;
+    aspect-ratio: 16/9; // Horizontal by default on mobile
+    max-width: 320px;
+    margin-inline: auto;
+    border: 1px solid a.$color-border;
+    box-shadow: a.$shadow-2;
+    position: relative;
+
+    @include a.mq(a.$bp-lg) {
+        aspect-ratio: 9/16; // Vertical on desktop
+    }
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.videoCaption {
+    position: absolute;
+    bottom: a.$space-5;
+    left: a.$space-5;
+    right: a.$space-5;
+    color: white;
+    font-size: 13px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    padding: a.$space-3 a.$space-4;
+    border-radius: a.$radius-md;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+    position: relative;
+    margin: 0 0 a.$space-4;
+    font-size: clamp(26px, 2.8vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.05;
+}
+
+.subtitle {
+    position: relative;
+    margin: 0 0 a.$space-8;
+    color: a.$color-muted;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 65ch;
+}
+
+.actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: a.$space-4;
+}
+
+.primary {
+    @include a.button-base;
+    @include a.focus-ring;
+    background: a.$color-text;
+    color: white;
+    border: none;
+    padding: a.$space-4 a.$space-8;
+    font-size: 16px;
+
+    &:hover {
+        background: color.adjust(a.$color-text, $lightness: 10%);
+        transform: translateY(-2px);
+    }
+}
+
+.secondary {
+    @include a.button-base;
+    @include a.focus-ring;
+    background: white;
+    border-color: a.$color-border;
+    color: a.$color-text;
+    padding: a.$space-4 a.$space-8;
+    font-size: 16px;
+
+    &:hover {
+        background: a.$color-surface-2;
+        border-color: color.adjust(a.$color-border, $lightness: -10%);
+        transform: translateY(-2px);
+    }
+}
+
+.note {
+    position: relative;
+    margin-top: a.$space-6;
+    color: a.$color-muted;
+    font-size: 13px;
+    opacity: 0.8;
+}

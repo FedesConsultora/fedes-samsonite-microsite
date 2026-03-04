@@ -1,0 +1,52 @@
+@use "../../styles/abstracts" as a;
+
+.footer {
+    border-top: 1px solid a.$color-border;
+    padding: a.$space-6 0 a.$space-7;
+    background: a.$color-surface-2;
+}
+
+.inner {
+    @include a.container;
+    display: grid;
+    gap: a.$space-5;
+
+    @include a.mq(a.$bp-md) {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+    }
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: a.$space-4;
+}
+
+.logo {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.meta {
+    color: a.$color-muted;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: a.$space-4;
+
+    a {
+        color: #475569;
+        font-size: 13px;
+        font-weight: 600;
+
+        &:hover {
+            color: a.$color-accent;
+        }
+    }
+}

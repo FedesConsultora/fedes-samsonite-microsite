@@ -1,0 +1,74 @@
+@use "../../styles/abstracts" as a;
+
+.section {
+    padding: 0 0 a.$space-9;
+}
+
+.inner {
+    @include a.container;
+}
+
+.header {
+    max-width: 76ch;
+    margin-bottom: a.$space-6;
+}
+
+.title {
+    margin: 0 0 a.$space-3;
+    font-size: clamp(24px, 2.2vw, 34px);
+}
+
+.subtitle {
+    margin: 0;
+    color: a.$color-muted;
+    line-height: 1.6;
+}
+
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: a.$space-4;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    border: 1px solid a.$color-border;
+    border-radius: a.$radius-lg;
+    overflow: hidden;
+    background: white;
+    box-shadow: a.$shadow-1;
+    min-width: 600px; // Ensure table doesn't cramp too much
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid a.$color-border;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.th {
+    padding: a.$space-4 a.$space-6;
+    background: a.$color-surface-2;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.td {
+    padding: a.$space-5 a.$space-6;
+    font-size: 15px;
+    color: a.$color-muted;
+}
+
+.tdStrong {
+    padding: a.$space-5 a.$space-6;
+    font-size: 15px;
+    font-weight: 700;
+    background: rgba(14, 165, 233, 0.03);
+    color: a.$color-accent;
+}

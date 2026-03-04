@@ -1,0 +1,44 @@
+/* src/styles/global.scss */
+@use "./abstracts" as a;
+
+:root {
+    color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: a.$font-sans;
+    color: a.$color-text;
+    background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(14, 165, 233, 0.05), transparent 60%),
+        radial-gradient(900px 700px at 90% 10%, rgba(139, 92, 246, 0.04), transparent 55%),
+        a.$color-bg;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+::selection {
+    background: rgba(14, 165, 233, 0.15);
+}

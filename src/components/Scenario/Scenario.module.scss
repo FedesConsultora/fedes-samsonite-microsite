@@ -1,0 +1,156 @@
+@use "../../styles/abstracts" as a;
+
+.section {
+    padding: a.$space-10 0;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.inner {
+    @include a.container;
+}
+
+.header {
+    margin-bottom: a.$space-8;
+    max-width: 700px;
+}
+
+.title {
+    font-size: clamp(32px, 3.5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: a.$space-4;
+    color: a.$color-text;
+}
+
+.subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    color: a.$color-muted;
+}
+
+/* Carousel Styles */
+.carouselWrapper {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2);
+    cursor: grab;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.carouselTrack {
+    display: flex;
+    gap: a.$space-4;
+    padding: a.$space-4 a.$space-6;
+
+    @include a.mq(a.$bp-lg) {
+        gap: a.$space-6;
+        padding: a.$space-4 0;
+        justify-content: center;
+        max-width: a.$container-max;
+        margin-inline: auto;
+        cursor: default; // Less need to drag on desktop if all 3 are visible
+    }
+}
+
+.videoCard {
+    position: relative;
+    // Mobile: Take significant screen space but show a hint of next
+    flex: 0 0 clamp(280px, 85vw, 320px);
+    aspect-ratio: 9/16;
+    border-radius: a.$radius-xl;
+    overflow: hidden;
+    background: #000;
+    box-shadow: a.$shadow-2;
+    border: 1px solid a.$color-border; // Gray border requested
+    transform-origin: center;
+    user-select: none;
+
+    @include a.mq(a.$bp-lg) {
+        flex: 1 1 calc((100% - (2 * a.$space-6)) / 3);
+        max-width: none;
+        height: auto; // Let aspect-ratio handle it
+    }
+}
+
+.videoElement {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; // Control ourselves
+}
+
+.customControls {
+    position: absolute;
+    bottom: a.$space-4;
+    left: a.$space-4;
+    right: a.$space-4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.videoCard:hover .customControls {
+    opacity: 1;
+}
+
+.controlBtn {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(15, 23, 42, 0.6);
+        transform: scale(1.1);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.cardOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.6));
+    pointer-events: none;
+}
+
+.cardInfo {
+    position: absolute;
+    bottom: a.$space-8;
+    left: a.$space-5;
+    right: a.$space-5;
+    color: white;
+    pointer-events: none;
+
+    h3 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 4px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+        font-size: 13px;
+        opacity: 0.9;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+}

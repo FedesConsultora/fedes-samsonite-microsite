@@ -1,0 +1,64 @@
+/* src/styles/abstracts/_mixins.scss */
+@use "./tokens" as t;
+
+@mixin container {
+    width: 100%;
+    max-width: t.$container-max;
+    margin-inline: auto;
+    padding-inline: t.$space-6;
+
+    @media (min-width: t.$bp-lg) {
+        padding-inline: t.$space-8;
+    }
+}
+
+@mixin card {
+    background: linear-gradient(180deg, t.$color-surface, t.$color-surface-2);
+    border: 1px solid t.$color-border;
+    border-radius: t.$radius-lg;
+    box-shadow: t.$shadow-1;
+}
+
+@mixin subtle-grid {
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(232, 238, 252, 0.10) 1px, transparent 0);
+    background-size: 18px 18px;
+}
+
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: t.$space-2;
+
+    height: 46px;
+    padding: 0 t.$space-5;
+
+    border-radius: t.$radius-md;
+    border: 1px solid t.$color-border;
+
+    font-weight: 650;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+
+    transition: transform 120ms ease, background 160ms ease, border-color 160ms ease;
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+@mixin focus-ring {
+    &:focus-visible {
+        outline: 2px solid rgba(110, 231, 255, 0.65);
+        outline-offset: 2px;
+    }
+}
+
+@mixin mq($min) {
+    @media (min-width: $min) {
+        @content;
+    }
+}
