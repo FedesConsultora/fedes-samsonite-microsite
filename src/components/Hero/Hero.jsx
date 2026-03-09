@@ -5,6 +5,8 @@ import { track } from "../../lib/track.js";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 import heroBg from "../../assets/hero/hero-bg.webp";
+import case1Video from "../../assets/casos-de-exito/case1.webm";
+import case1Poster from "../../assets/casos-de-exito/case1.webp";
 
 export default function Hero({ onContactClick }) {
     const { t } = useLanguage();
@@ -58,8 +60,8 @@ export default function Hero({ onContactClick }) {
                 >
                     <div className={styles.mediaCard}>
                         <VideoPlayer
-                            src="/assets/casos-de-exito/case1.mp4"
-                            poster="/assets/casos-de-exito/case1.webp"
+                            src={case1Video}
+                            poster={case1Poster}
                             ariaLabel="Success Case 1"
                             className={styles.video}
                         />

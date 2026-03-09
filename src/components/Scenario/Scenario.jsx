@@ -3,27 +3,35 @@ import { motion } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import styles from "./Scenario.module.scss";
 
+// We import the videos from src/assets to let Vite handle them correctly
+import case1Video from "../../assets/casos-de-exito/case1.webm";
+import case1Poster from "../../assets/casos-de-exito/case1.webp";
+import case2Video from "../../assets/casos-de-exito/case2.webm";
+import case2Poster from "../../assets/casos-de-exito/case2.webp";
+import case3Video from "../../assets/casos-de-exito/case3.webm";
+import case3Poster from "../../assets/casos-de-exito/case3.webp";
+
 const cases = [
     {
         id: 1,
         title: "Atribución e Incrementalidad",
         description: "Región Latam · Paid maduro · Escalamiento real",
-        video: "/samsonite/assets/casos-de-exito/case1.mp4",
-        poster: "/samsonite/assets/casos-de-exito/case1.webp"
+        video: case1Video,
+        poster: case1Poster
     },
     {
         id: 2,
         title: "Curvas Marginales y MMM",
         description: "Optimización por país y etapa del funnel",
-        video: "/samsonite/assets/casos-de-exito/case2.mp4",
-        poster: "/samsonite/assets/casos-de-exito/case2.webp"
+        video: case2Video,
+        poster: case2Poster
     },
     {
         id: 3,
         title: "Eficiencia de Ganancia (POAS)",
         description: "Modelo de contribución directa por SKU",
-        video: "/samsonite/assets/casos-de-exito/case3.mp4",
-        poster: "/samsonite/assets/casos-de-exito/case3.webp"
+        video: case3Video,
+        poster: case3Poster
     }
 ];
 

@@ -4,6 +4,10 @@ import styles from "./Invitation.module.scss";
 import { track } from "../../lib/track.js";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
+// Importing Case 3 assets
+import case3Video from "../../assets/casos-de-exito/case3.webm";
+import case3Poster from "../../assets/casos-de-exito/case3.webp";
+
 export default function Invitation({ onContactClick }) {
     const { t } = useLanguage();
     const onCTA = (placement) => track("cta_click", { placement });
@@ -49,8 +53,8 @@ export default function Invitation({ onContactClick }) {
                     >
                         <div className={styles.videoCard}>
                             <VideoPlayer
-                                src="/assets/casos-de-exito/case3.mp4"
-                                poster="/assets/casos-de-exito/case3.webp"
+                                src={case3Video}
+                                poster={case3Poster}
                                 ariaLabel="Success Case 3"
                                 className={styles.video}
                             />

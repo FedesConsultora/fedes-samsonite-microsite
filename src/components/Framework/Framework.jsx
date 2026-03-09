@@ -3,6 +3,10 @@ import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Framework.module.scss";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
+// Importing video and poster from src/assets
+import case2Video from "../../assets/casos-de-exito/case2.webm";
+import case2Poster from "../../assets/casos-de-exito/case2.webp";
+
 export default function Framework() {
     const { t } = useLanguage();
 
@@ -32,8 +36,8 @@ export default function Framework() {
                     >
                         <div className={styles.videoCard}>
                             <VideoPlayer
-                                src="/assets/casos-de-exito/case2.mp4"
-                                poster="/assets/casos-de-exito/case2.webp"
+                                src={case2Video}
+                                poster={case2Poster}
                                 ariaLabel="Success Case 2"
                                 className={styles.video}
                             />
