@@ -69,19 +69,22 @@
 }
 
 .title {
-    margin: 0 0 a.$space-4;
-    font-size: clamp(34px, 3.4vw, 56px);
+    margin: 0 0 a.$space-2;
+    font-size: clamp(20px, 3.4vw, 30px);
     line-height: 1.03;
     letter-spacing: -0.8px;
-    color: #0f172a;
+    color: #475569;
+    font-weight: 600;
 }
 
 .subtitle {
     margin: 0 0 a.$space-6;
-    color: #475569;
-    font-size: 16px;
-    line-height: 1.55;
+    color: #0f172a;
+    font-size: 34px;
+    line-height: 1;
     max-width: 56ch;
+    font-weight: 700;
+    white-space: pre-line;
 
     @media (max-width: a.$bp-lg) {
         margin-inline: auto;
@@ -163,12 +166,24 @@
     border-radius: a.$radius-xl;
     border: 1px solid #e2e8f0;
     box-shadow: a.$shadow-2;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: a.$shadow-3;
+
+        video {
+            transform: scale(1.1);
+        }
+    }
 }
 
 .video {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mediaCaption {

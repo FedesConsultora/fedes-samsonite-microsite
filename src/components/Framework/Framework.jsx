@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Framework.module.scss";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 export default function Framework() {
     const { t } = useLanguage();
@@ -30,14 +31,11 @@ export default function Framework() {
                         transition={{ duration: 1, delay: 0.2 }}
                     >
                         <div className={styles.videoCard}>
-                            <video
-                                className={styles.video}
+                            <VideoPlayer
                                 src="/assets/casos-de-exito/case2.mp4"
                                 poster="/assets/casos-de-exito/case2.webp"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
+                                ariaLabel="Success Case 2"
+                                className={styles.video}
                             />
                             <div className={styles.videoCaption}>
                                 <strong>{t.common.successCase}:</strong> Marginal Optimization & MMM

@@ -11,7 +11,7 @@
 .grid {
     display: grid;
     gap: a.$space-8;
-    align-items: start;
+    align-items: center;
 
     @include a.mq(a.$bp-lg) {
         grid-template-columns: 0.8fr 1.2fr;
@@ -75,7 +75,7 @@
 }
 
 .title {
-    margin: 0 0 a.$space-3;
+    margin: 0;
     font-size: clamp(32px, 3vw, 44px);
     font-weight: 800;
     letter-spacing: -1.5px;
@@ -84,7 +84,7 @@
 .subtitle {
     margin: 0;
     color: a.$color-muted;
-    line-height: 1.6;
+    line-height: 1.1;
     font-size: 18px;
 }
 
@@ -94,6 +94,7 @@
     list-style: none;
     display: grid;
     gap: a.$space-4;
+
 
     @include a.mq(a.$bp-md) {
         grid-template-columns: repeat(2, 1fr);
@@ -109,6 +110,7 @@
     grid-template-columns: auto 1fr;
     gap: a.$space-4;
     align-items: start;
+
     box-shadow: a.$shadow-1;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 

@@ -71,17 +71,15 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 300px;
-    height: 360px; // Credit-card proportions
+    width: 310px;
+    height: 380px; // Slightly taller to fit larger text
     cursor: pointer;
     transition: all 0.65s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: bottom center;
 
-    // Center elevation trick
-    --center-lift: calc((1 - min(1, var(--abs-index))) * -36px);
-    --rot-z: calc(var(--display-index) * 8deg);
-    --trans-x: calc(var(--display-index) * 80px);
-    --trans-y: calc(var(--abs-index) * 12px + var(--center-lift));
+    --rot-z: calc(var(--display-index) * 15deg);
+    --trans-x: calc(var(--display-index) * 150px);
+    --trans-y: calc(var(--abs-index) * var(--abs-index) * 45px - 75px + (1 - min(1, var(--abs-index))) * 15px);
 
     transform:
         translateX(calc(-50% + var(--trans-x))) translateY(var(--trans-y)) rotateZ(var(--rot-z));
@@ -137,10 +135,11 @@
     background: #ffffff;
     border: 1px solid rgba(14, 165, 233, 0.18);
     border-radius: 18px;
-    padding: a.$space-6 a.$space-6 a.$space-5;
+    padding: a.$space-7 a.$space-6 a.$space-6;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: a.$space-3;
     box-shadow:
         0 8px 24px rgba(14, 165, 233, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.05),
@@ -255,30 +254,25 @@
 }
 
 .cardBrand {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: a.$color-muted;
-    opacity: 0.6;
+    display: none;
 }
 
 .cardTitle {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 800;
     color: a.$color-text;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 0px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: a.$space-2;
 }
 
 .cardContent {
-    font-size: 12px;
+    font-size: 14px;
     color: a.$color-muted;
-    line-height: 1.5;
+    line-height: 1.6;
     font-family: a.$font-mono;
-    letter-spacing: 0.2px;
-    margin-top: 5px;
+    letter-spacing: 0.1px;
+    margin-top: a.$space-2;
 }
 
 .cardImageContainer {
@@ -463,7 +457,8 @@
     .card {
         width: 260px;
         height: 265px;
-        --trans-x: calc(var(--display-index) * 55px);
+        --trans-x: calc(var(--display-index) * 110px);
+        --rot-z: calc(var(--display-index) * 12deg);
     }
 }
 
@@ -478,8 +473,8 @@
         width: 220px;
         height: 180px; // Taller for better text fit
         --center-lift: calc((1 - min(1, var(--abs-index))) * -28px);
-        --trans-x: calc(var(--display-index) * 65px);
-        --rot-z: calc(var(--display-index) * 7deg);
+        --trans-x: calc(var(--display-index) * 85px);
+        --rot-z: calc(var(--display-index) * 9deg);
 
         display: none;
 
@@ -519,8 +514,8 @@
     .card {
         width: 190px;
         height: 160px;
-        --trans-x: calc(var(--display-index) * 55px);
-        --rot-z: calc(var(--display-index) * 6deg);
+        --trans-x: calc(var(--display-index) * 75px);
+        --rot-z: calc(var(--display-index) * 8deg);
     }
 
     .cardsWrapper {

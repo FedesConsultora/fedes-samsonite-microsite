@@ -20,12 +20,14 @@ export default function Signals() {
     const timerRef = useRef(null);
     const interactionTimeoutRef = useRef(null);
 
+    const cardsData = t.signals.cards;
+
     // Initial Roulette effect
     useEffect(() => {
         let count = 0;
         const totalSteps = 12;
         const interval = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % partnerSignals.length);
+            setActiveIndex(prev => (prev + 1) % cardsData.length);
             count++;
             if (count >= totalSteps) {
                 clearInterval(interval);
@@ -33,38 +35,34 @@ export default function Signals() {
             }
         }, 150);
         return () => clearInterval(interval);
-    }, []);
+    }, [cardsData.length]);
 
-    // Auto-cycling - Keep it running even if focused as requested
+    // Auto-cycling
     useEffect(() => {
         if (isInitialRoulette || isUserInteracting || isDragging) return;
 
         timerRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % partnerSignals.length);
+            setActiveIndex(prev => (prev + 1) % cardsData.length);
         }, 3000);
 
         return () => clearInterval(timerRef.current);
-    }, [isInitialRoulette, isUserInteracting, isDragging]);
+    }, [isInitialRoulette, isUserInteracting, isDragging, cardsData.length]);
 
     const resetInteraction = () => {
         setIsUserInteracting(true);
         if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
         interactionTimeoutRef.current = setTimeout(() => {
             setIsUserInteracting(false);
-        }, 5000); // Resume auto-cycle after 5s of inactivity
+        }, 5000);
     };
 
     const handleCardClick = (idx, e) => {
         if (isDragging && Math.abs(dragOffset) > 10) return;
-
         resetInteraction();
-
         if (activeIndex !== idx) {
-            // First: move the card to the center (rotate the wheel)
             setActiveIndex(idx);
             setIsFocused(false);
         } else {
-            // Second: if it's already centered, expand it
             setIsFocused(!isFocused);
         }
     };
@@ -84,12 +82,11 @@ export default function Signals() {
         const diff = x - startX;
         setDragOffset(diff);
 
-        // If dragged enough, move index
         if (Math.abs(diff) > 70) {
             if (diff > 0) {
-                setActiveIndex(prev => (prev - 1 + partnerSignals.length) % partnerSignals.length);
+                setActiveIndex(prev => (prev - 1 + cardsData.length) % cardsData.length);
             } else {
-                setActiveIndex(prev => (prev + 1) % partnerSignals.length);
+                setActiveIndex(prev => (prev + 1) % cardsData.length);
             }
             setStartX(x);
             setDragOffset(0);
@@ -132,18 +129,17 @@ export default function Signals() {
                 transition={{ duration: 1 }}
             >
                 <div className={styles.cardsWrapper}>
-                    {partnerSignals.map((s, idx) => {
+                    {cardsData.map((s, idx) => {
                         const isActive = activeIndex === idx;
                         const isSelected = isActive && isFocused;
 
-                        const relativeIndex = (idx - activeIndex + partnerSignals.length) % partnerSignals.length;
-                        let displayIndex = relativeIndex;
-                        if (displayIndex > partnerSignals.length / 2) {
-                            displayIndex -= partnerSignals.length;
-                        }
+                        const total = cardsData.length;
+                        let displayIndex = idx - activeIndex;
+                        if (displayIndex > total / 2) displayIndex -= total;
+                        if (displayIndex <= -total / 2) displayIndex += total;
 
-                        const currentTitle = lang === "en" ? s.title_en : s.title;
-                        const currentDesc = lang === "en" ? s.desc_en : s.desc;
+                        // Map original images to new 5 cards based on index
+                        const sImage = partnerSignals[idx]?.image;
 
                         return (
                             <article
@@ -160,7 +156,7 @@ export default function Signals() {
                                 style={{
                                     "--display-index": displayIndex,
                                     "--abs-index": Math.abs(displayIndex),
-                                    zIndex: 30 + (partnerSignals.length - Math.abs(displayIndex)),
+                                    zIndex: 30 + (cardsData.length - Math.abs(displayIndex)),
                                     opacity: isSelected ? 0 : 1,
                                     pointerEvents: isFocused ? "none" : "auto"
                                 }}
@@ -168,15 +164,15 @@ export default function Signals() {
                                 <div className={styles.cardInner}>
                                     <div className={styles.cardTop}>
                                         <div className={styles.cardIcon}></div>
-                                        <span className={styles.cardBrand}>Fedes · {String(idx + 1).padStart(2, "0")}</span>
                                     </div>
-                                    <h3 className={styles.cardTitle}>{currentTitle}</h3>
-                                    <p className={styles.cardContent}>{currentDesc}</p>
+                                    <h3 className={styles.cardTitle}>{s.title}</h3>
+                                    <p className={styles.cardContent}>{s.desc}</p>
                                 </div>
                             </article>
                         );
                     })}
                 </div>
+
 
                 {/* Realistic Leather Wallet Body */}
                 <div className={styles.walletBody} />
@@ -204,19 +200,18 @@ export default function Signals() {
                         <div className={styles.cardInner}>
                             <div className={styles.cardTop}>
                                 <div className={styles.cardIcon}></div>
-                                <span className={styles.cardBrand}>Fedes · {String(activeIndex + 1).padStart(2, "0")}</span>
                             </div>
                             <h3 className={styles.cardTitle}>
-                                {lang === "en" ? partnerSignals[activeIndex].title_en : partnerSignals[activeIndex].title}
+                                {cardsData[activeIndex].title}
                             </h3>
                             <p className={styles.cardContent}>
-                                {lang === "en" ? partnerSignals[activeIndex].desc_en : partnerSignals[activeIndex].desc}
+                                {cardsData[activeIndex].desc}
                             </p>
-                            {partnerSignals[activeIndex].image && (
+                            {partnerSignals[activeIndex]?.image && (
                                 <div className={styles.cardImageContainer}>
                                     <img
                                         src={partnerSignals[activeIndex].image}
-                                        alt={lang === "en" ? partnerSignals[activeIndex].title_en : partnerSignals[activeIndex].title}
+                                        alt={cardsData[activeIndex].title}
                                         className={styles.cardImage}
                                     />
                                 </div>

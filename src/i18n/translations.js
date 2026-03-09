@@ -8,7 +8,7 @@ export const translations = {
         },
         hero: {
             title: "Si quieren una agencia, hay muchas.",
-            subtitle: "Si quieren un partner de incrementalidad, conversemos.",
+            subtitle: "Si quieren un partner\nde incrementalidad, conversemos.",
             ctaPrimary: "Conversemos",
             ctaSecondary: "Nuestro Framework"
         },
@@ -16,7 +16,14 @@ export const translations = {
             title: "¿Porqué Fedes?",
             subtitle: "No lo explicamos con powerpoint. Operamos con un modelo que defiende el margen y la incrementalidad.",
             label: "Señales Estratégicas",
-            drag: "deslizá"
+            drag: "deslizá",
+            cards: [
+                { title: "Incrementalidad real", desc: "No atribuible: incremental. Experimentos y lógica de lift." },
+                { title: "Revenue incremental", desc: "Crecimiento rentable, no “mejores métricas”." },
+                { title: "Curvas marginales", desc: "Detectar saturación y mover presupuesto con evidencia." },
+                { title: "POAS", desc: "Profit on Ad Spend: contribución, fees, devoluciones, realidad." },
+                { title: "MMM continuo", desc: "Modelo vivo: recalibración y aprendizaje, no un proyecto puntual." }
+            ]
         },
         framework: {
             title: "Nuestro Framework",
@@ -50,8 +57,8 @@ export const translations = {
             }
         },
         invitation: {
-            title: "Si quieren un partner de incrementalidad, conversemos.",
-            desc: "Agendemos una llamada de 15 minutos para entender tus desafíos.",
+            title: "Si quieren un partner\nde incrementalidad, conversemos.",
+            desc: "Agendemos una llamada de 15 minutos\npara entender tus desafíos.",
             cta: "Agendar Llamada"
         },
         contactModal: {
@@ -91,7 +98,7 @@ export const translations = {
         },
         hero: {
             title: "If you want an agency, there are many.",
-            subtitle: "If you want an incrementality partner, let's talk.",
+            subtitle: "If you want an incrementality partner,\nlet's talk.",
             ctaPrimary: "Let's talk",
             ctaSecondary: "Our Framework"
         },
@@ -99,7 +106,14 @@ export const translations = {
             title: "Why Fedes?",
             subtitle: "We don't explain with powerpoints. We operate with a model that defends margin and incrementality.",
             label: "Strategic Signals",
-            drag: "slide"
+            drag: "slide",
+            cards: [
+                { title: "Real Incrementality", desc: "Not just attribution: incremental. Experiments and lift logic." },
+                { title: "Incremental Revenue", desc: "Profitable growth, not just 'better metrics'." },
+                { title: "Marginal Curves", desc: "Detect saturation and reallocate budget with evidence." },
+                { title: "POAS", desc: "Profit on Ad Spend: contribution, fees, returns, reality." },
+                { title: "Continuous MMM", desc: "Dynamic model: continuous recalibration and learning, not a one-off project." }
+            ]
         },
         framework: {
             title: "Our Framework",
@@ -133,8 +147,8 @@ export const translations = {
             }
         },
         invitation: {
-            title: "If you want an incrementality partner, let's talk.",
-            desc: "Let's schedule a 15-minute call to understand your challenges.",
+            title: "If you want an incrementality partner,\nlet's talk.",
+            desc: "Let's schedule a 15-minute call\nto understand your challenges.",
             cta: "Schedule Call"
         },
         contactModal: {

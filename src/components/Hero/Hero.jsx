@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Hero.module.scss";
 import { track } from "../../lib/track.js";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 import heroBg from "../../assets/hero/hero-bg.webp";
 
@@ -56,16 +57,11 @@ export default function Hero({ onContactClick }) {
                     transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
                 >
                     <div className={styles.mediaCard}>
-                        <video
-                            className={styles.video}
-                            autoPlay
-                            muted
-                            playsInline
-                            loop
-                            preload="auto"
+                        <VideoPlayer
                             src="/assets/casos-de-exito/case1.mp4"
                             poster="/assets/casos-de-exito/case1.webp"
-                            aria-label="Success Case 1"
+                            ariaLabel="Success Case 1"
+                            className={styles.video}
                         />
                         <div className={styles.mediaCaption}>
                             <strong>{t.common.successCase}:</strong> Attribution & Incrementality

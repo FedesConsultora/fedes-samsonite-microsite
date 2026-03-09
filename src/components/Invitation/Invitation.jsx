@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Invitation.module.scss";
 import { track } from "../../lib/track.js";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 export default function Invitation({ onContactClick }) {
     const { t } = useLanguage();
@@ -47,14 +48,11 @@ export default function Invitation({ onContactClick }) {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <div className={styles.videoCard}>
-                            <video
-                                className={styles.video}
+                            <VideoPlayer
                                 src="/assets/casos-de-exito/case3.mp4"
                                 poster="/assets/casos-de-exito/case3.webp"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
+                                ariaLabel="Success Case 3"
+                                className={styles.video}
                             />
                             <div className={styles.videoCaption}>
                                 <strong>{t.common.successCase}:</strong> Profit Efficiency (POAS)

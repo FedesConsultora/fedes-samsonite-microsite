@@ -29,21 +29,21 @@
 .mainTitle {
     font-size: clamp(32px, 3.5vw, 44px);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1;
     letter-spacing: -2px;
-    margin-bottom: a.$space-6;
+    margin-bottom: a.$space-2;
     color: a.$color-text;
 
     span {
         color: a.$color-accent;
         display: block;
-        margin-top: a.$space-2;
+
     }
 }
 
 .lead {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.2;
     color: a.$color-muted;
     margin-bottom: a.$space-8;
 }
