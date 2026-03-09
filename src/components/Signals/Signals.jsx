@@ -1,101 +1,26 @@
-import { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import styles from "./Signals.module.scss";
-import { partnerSignals } from "../../data/partnerSignals.js";
 import { useLanguage } from "../../i18n/LanguageContext";
+import Folder from "./Folder";
 
 export default function Signals() {
-    const { t, lang } = useLanguage();
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isUserInteracting, setIsUserInteracting] = useState(false);
-    const [isInitialRoulette, setIsInitialRoulette] = useState(true);
-    const [isFocused, setIsFocused] = useState(false);
-
-    // Drag state
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [dragOffset, setDragOffset] = useState(0);
-
-    const timerRef = useRef(null);
-    const interactionTimeoutRef = useRef(null);
-
+    const { t } = useLanguage();
     const cardsData = t.signals.cards;
 
-    // Initial Roulette effect
-    useEffect(() => {
-        let count = 0;
-        const totalSteps = 12;
-        const interval = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % cardsData.length);
-            count++;
-            if (count >= totalSteps) {
-                clearInterval(interval);
-                setIsInitialRoulette(false);
-            }
-        }, 150);
-        return () => clearInterval(interval);
-    }, [cardsData.length]);
-
-    // Auto-cycling
-    useEffect(() => {
-        if (isInitialRoulette || isUserInteracting || isDragging) return;
-
-        timerRef.current = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % cardsData.length);
-        }, 3000);
-
-        return () => clearInterval(timerRef.current);
-    }, [isInitialRoulette, isUserInteracting, isDragging, cardsData.length]);
-
-    const resetInteraction = () => {
-        setIsUserInteracting(true);
-        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
-        interactionTimeoutRef.current = setTimeout(() => {
-            setIsUserInteracting(false);
-        }, 5000);
-    };
-
-    const handleCardClick = (idx, e) => {
-        if (isDragging && Math.abs(dragOffset) > 10) return;
-        resetInteraction();
-        if (activeIndex !== idx) {
-            setActiveIndex(idx);
-            setIsFocused(false);
-        } else {
-            setIsFocused(!isFocused);
-        }
-    };
-
-    // Drag Logic
-    const onStart = (e) => {
-        if (isFocused) return;
-        setIsDragging(true);
-        setStartX(e.pageX || e.touches[0].pageX);
-        setDragOffset(0);
-        resetInteraction();
-    };
-
-    const onMove = (e) => {
-        if (!isDragging) return;
-        const x = e.pageX || e.touches[0].pageX;
-        const diff = x - startX;
-        setDragOffset(diff);
-
-        if (Math.abs(diff) > 70) {
-            if (diff > 0) {
-                setActiveIndex(prev => (prev - 1 + cardsData.length) % cardsData.length);
-            } else {
-                setActiveIndex(prev => (prev + 1) % cardsData.length);
-            }
-            setStartX(x);
-            setDragOffset(0);
-        }
-    };
-
-    const onEnd = () => {
-        setIsDragging(false);
-    };
+    // We transform the card data into components for the Folder items
+    const folderItems = cardsData.map((s, idx) => (
+        <div key={idx} className={styles.cardItem}>
+            <div
+                className={styles.cardBg}
+                style={{ backgroundImage: `url(${s.image})` }}
+            />
+            <div className={styles.cardOverlay} />
+            <div className={styles.cardInfo}>
+                <h3 className={styles.cardTitle}>{s.title}</h3>
+                <p className={styles.cardContent}>{s.desc}</p>
+            </div>
+        </div>
+    ));
 
     return (
         <section id="why-fedes" className={styles.section} aria-label={t.signals.title}>
@@ -115,118 +40,16 @@ export default function Signals() {
             </div>
 
             <motion.div
-                className={styles.walletContainer}
-                onMouseDown={onStart}
-                onMouseMove={onMove}
-                onMouseUp={onEnd}
-                onMouseLeave={onEnd}
-                onTouchStart={onStart}
-                onTouchMove={onMove}
-                onTouchEnd={onEnd}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 1 }}
             >
-                <div className={styles.cardsWrapper}>
-                    {cardsData.map((s, idx) => {
-                        const isActive = activeIndex === idx;
-                        const isSelected = isActive && isFocused;
-
-                        const total = cardsData.length;
-                        let displayIndex = idx - activeIndex;
-                        if (displayIndex > total / 2) displayIndex -= total;
-                        if (displayIndex <= -total / 2) displayIndex += total;
-
-                        // Map original images to new 5 cards based on index
-                        const sImage = partnerSignals[idx]?.image;
-
-                        return (
-                            <article
-                                key={idx}
-                                className={`
-                                    ${styles.card}
-                                    ${isActive ? styles.active : ""}
-                                    ${isInitialRoulette ? styles.rouletteAnim : ""}
-                                `}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleCardClick(idx, e);
-                                }}
-                                style={{
-                                    "--display-index": displayIndex,
-                                    "--abs-index": Math.abs(displayIndex),
-                                    zIndex: 30 + (cardsData.length - Math.abs(displayIndex)),
-                                    opacity: isSelected ? 0 : 1,
-                                    pointerEvents: isFocused ? "none" : "auto"
-                                }}
-                            >
-                                <div className={styles.cardInner}>
-                                    <div className={styles.cardTop}>
-                                        <div className={styles.cardIcon}></div>
-                                    </div>
-                                    <h3 className={styles.cardTitle}>{s.title}</h3>
-                                    <p className={styles.cardContent}>{s.desc}</p>
-                                </div>
-                            </article>
-                        );
-                    })}
-                </div>
-
-
-                {/* Realistic Leather Wallet Body */}
-                <div className={styles.walletBody} />
-
-                {/* Golden label & drag handle inside the wallet */}
-                <div className={styles.walletLabel}>{t.signals.label}</div>
-                <div className={styles.dragHint}>
-                    <div className={styles.dragPill} />
-                    {t.signals.drag}
-                    <div className={styles.dragPill} />
-                </div>
+                <Folder
+                    items={folderItems}
+                    color="#b08d6a" // Light brown / tan leather color
+                />
             </motion.div>
-
-            {/* Portal for focused card */}
-            {isFocused && createPortal(
-                <>
-                    <div
-                        className={`${styles.activeOverlay} ${styles.visible}`}
-                        onClick={() => setIsFocused(false)}
-                    />
-                    <article
-                        className={`${styles.card} ${styles.focused}`}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className={styles.cardInner}>
-                            <div className={styles.cardTop}>
-                                <div className={styles.cardIcon}></div>
-                            </div>
-                            <h3 className={styles.cardTitle}>
-                                {cardsData[activeIndex].title}
-                            </h3>
-                            <p className={styles.cardContent}>
-                                {cardsData[activeIndex].desc}
-                            </p>
-                            {partnerSignals[activeIndex]?.image && (
-                                <div className={styles.cardImageContainer}>
-                                    <img
-                                        src={partnerSignals[activeIndex].image}
-                                        alt={cardsData[activeIndex].title}
-                                        className={styles.cardImage}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    </article>
-                    <button
-                        className={styles.closeBtn}
-                        onClick={() => setIsFocused(false)}
-                    >
-                        ✕
-                    </button>
-                </>,
-                document.body
-            )}
         </section>
     );
 }

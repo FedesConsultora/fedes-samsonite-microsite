@@ -1,11 +1,12 @@
 @use "../../styles/abstracts" as a;
 
-// ─── Section shell ───────────────────────────────────────────────────────────
+/* Section structure */
 
 .section {
     position: relative;
-    padding: a.$space-8 0 0;
+    padding: a.$space-8 0;
     overflow: hidden;
+    background: a.$color-bg;
 }
 
 .inner {
@@ -15,7 +16,7 @@
 .header {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto a.$space-6; // Reduced from space-10
+    margin: 0 auto a.$space-10;
 }
 
 .title {
@@ -23,6 +24,7 @@
     font-weight: 800;
     margin-bottom: a.$space-4;
     letter-spacing: -1.5px;
+    color: a.$color-text;
 }
 
 .subtitle {
@@ -30,495 +32,72 @@
     font-size: 18px;
     max-width: 55ch;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
-// ─── Wallet scene ─────────────────────────────────────────────────────────────
+/* Card item styles (rendered inside FolderPapers) */
 
-.walletContainer {
-    position: relative;
-    height: 540px; // Reduced so wallet is higher / closer to header
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    cursor: grab;
-    user-select: none;
-    touch-action: pan-y;
-    top: 100px;
-
-    &:active {
-        cursor: grabbing;
-    }
-}
-
-// ─── Cards fan ───────────────────────────────────────────────────────────────
-
-.cardsWrapper {
-    position: absolute;
-    bottom: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    z-index: 20; // Above wallet body but below focused overlay
-    transform-style: preserve-3d;
-    perspective: 2000px;
-
-}
-
-.card {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 310px;
-    height: 380px; // Slightly taller to fit larger text
-    cursor: pointer;
-    transition: all 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-origin: bottom center;
-
-    --rot-z: calc(var(--display-index) * 15deg);
-    --trans-x: calc(var(--display-index) * 150px);
-    --trans-y: calc(var(--abs-index) * var(--abs-index) * 45px - 75px + (1 - min(1, var(--abs-index))) * 15px);
-
-    transform:
-        translateX(calc(-50% + var(--trans-x))) translateY(var(--trans-y)) rotateZ(var(--rot-z));
-
-    &.active .cardInner {
-        border-color: rgba(14, 165, 233, 0.5);
-        box-shadow:
-            0 8px 32px rgba(14, 165, 233, 0.18),
-            0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    // ─── Focused (expanded to portal) ────────────────────────────────────────
-    &.focused {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        z-index: 9500 !important;
-        width: min(420px, 90dvw) !important;
-        height: min(600px, 80dvh) !important;
-        display: block !important;
-        margin: 0 !important;
-        bottom: auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        border-radius: 24px !important;
-
-        .cardInner {
-            // Layout overrides only — color/style handled by .card.focused .cardInner below
-            opacity: 1 !important;
-            transform: none !important;
-            height: 100%;
-            border-radius: 24px !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            text-align: left;
-            padding: a.$space-8 a.$space-7;
-        }
-    }
-
-    &.rouletteAnim.active .cardInner {
-        border-color: a.$color-accent;
-        transform: translateY(-10px);
-    }
-}
-
-// ─── Card inner face — white with blue shimmer (in wallet) ───────────────────
-
-.cardInner {
+.cardItem {
     width: 100%;
     height: 100%;
-    background: #ffffff;
-    border: 1px solid rgba(14, 165, 233, 0.18);
+    position: relative;
     border-radius: 18px;
-    padding: a.$space-7 a.$space-6 a.$space-6;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: a.$space-3;
-    box-shadow:
-        0 8px 24px rgba(14, 165, 233, 0.1),
-        0 2px 8px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 #ffffff;
-    transition: all 0.4s ease;
-    backface-visibility: hidden;
-    position: relative;
     overflow: hidden;
-
-    // Blue radial shimmer from bottom-right
-    &::before {
-        content: "";
-        position: absolute;
-        bottom: -50px;
-        right: -50px;
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        background: radial-gradient(circle,
-                rgba(14, 165, 233, 0.15) 0%,
-                rgba(139, 92, 246, 0.08) 45%,
-                transparent 70%);
-        pointer-events: none;
-        //cambiar width a 120 en mobile nada más
-
-    }
-
-    // Bottom contact strip
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        border-radius: 0 0 18px 18px;
-        background: linear-gradient(to right,
-                transparent,
-                rgba(14, 165, 233, 0.55),
-                rgba(139, 92, 246, 0.45),
-                transparent);
-    }
+    background-color: #FFFF; // Restored black background
 }
 
-// ─── Focused card (expanded via portal) — keeps white with enhanced shimmer ──
-.card.focused .cardInner {
-    background: #ffffff;
-    border-color: rgba(14, 165, 233, 0.25);
-    box-shadow:
-        0 60px 120px rgba(14, 165, 233, 0.15),
-        0 20px 40px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(14, 165, 233, 0.15);
-
-    &::before {
-        // Larger blue shimmer centered on focused card
-        bottom: -80px;
-        right: -80px;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle,
-                rgba(14, 165, 233, 0.18) 0%,
-                rgba(139, 92, 246, 0.1) 40%,
-                transparent 70%);
-    }
-
-    .cardBrand {
-        color: a.$color-muted;
-        opacity: 0.6;
-    }
-
-    .cardTitle {
-        color: a.$color-text;
-    }
-
-    .cardContent {
-        color: a.$color-muted;
-    }
+.cardBg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+    opacity: .9; // Restored full opacity 
 }
 
-.cardTop {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+.cardOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            transparent 20%,
+            rgba(0, 0, 0, 0.3) 50%,
+            rgba(0, 0, 0, 0.85) 90%); // Restored dark gradient for readability 
+    z-index: 1;
 }
 
-.cardIcon {
-    width: 46px;
-    height: 36px;
-    background: linear-gradient(135deg, #b8892a 0%, #f0d080 50%, #c9a84c 100%);
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 900;
-    color: #6b4300;
-    letter-spacing: -0.5px;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.55),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.18),
-        0 2px 6px rgba(0, 0, 0, 0.25);
-    position: relative;
-    flex-shrink: 0;
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 4px;
-        border: 1px solid rgba(110, 70, 0, 0.3);
-        border-radius: 3px;
-    }
-}
-
-.cardBrand {
-    display: none;
+.cardInfo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: a.$space-6 a.$space-5;
+    z-index: 2;
+    color: white; // Restored white text
+    text-align: left;
 }
 
 .cardTitle {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 800;
-    color: a.$color-text;
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    margin-bottom: a.$space-2;
+    margin-bottom: 8px;
+    line-height: 1.1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .cardContent {
     font-size: 14px;
-    color: a.$color-muted;
-    line-height: 1.6;
-    font-family: a.$font-mono;
-    letter-spacing: 0.1px;
-    margin-top: a.$space-2;
-}
-
-.cardImageContainer {
-    margin-top: a.$space-6;
-    border-radius: a.$radius-md;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-    border: 1px solid a.$color-border;
-}
-
-.cardImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-// ─── Wallet body ─────────────────────────────────────────────────────────────
-// Realistic bifold leather wallet sitting at the bottom
-
-.walletBody {
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(1100px, 98dvw);
-    height: 360px;
-    z-index: 50;
-    pointer-events: none;
-    border-radius: 48px 48px 0 0;
-
-    // Main leather surface
-    background:
-        // Subtle grain noise via repeating gradient
-        repeating-linear-gradient(45deg,
-            transparent,
-            transparent 1px,
-            rgba(0, 0, 0, 0.018) 1px,
-            rgba(0, 0, 0, 0.018) 2px),
-        // Primary leather gradient
-        linear-gradient(175deg,
-            #2d2014 0%,
-            #1e1510 30%,
-            #261a0f 60%,
-            #1a1008 100%);
-
-    // Top edge highlight (catches light)
-    box-shadow:
-        0 -4px 0 0 rgba(255, 255, 255, 0.06), // rim light
-        0 -24px 60px rgba(0, 0, 0, 0.35), // shadow above
-        inset 0 1px 0 rgba(255, 255, 255, 0.08), // inner top edge
-        inset 0 -2px 0 rgba(0, 0, 0, 0.5); // deep inner bottom
-
-    // Card slot opening at the top
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 82%;
-        height: 38px;
-        background: linear-gradient(to bottom,
-                #0a0704,
-                #1a1008);
-        border-radius: 0 0 12px 12px;
-        box-shadow:
-            inset 0 4px 12px rgba(0, 0, 0, 0.8),
-            inset 0 1px 0 rgba(0, 0, 0, 0.9);
-
-        //quiero que en mobile tenga menos ancho con mediaqueries no con include
-        @media (max-width: 768px) {
-            width: 60%;
-        }
-    }
-
-    // Stitching detail along the card slot
-    &::after {
-        content: "";
-        position: absolute;
-        top: 44px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 84%;
-        height: 1px;
-        background: repeating-linear-gradient(to right,
-                transparent 0px,
-                transparent 5px,
-                rgba(180, 140, 80, 0.35) 5px,
-                rgba(180, 140, 80, 0.35) 10px);
-    }
-}
-
-// ─── Brand tab on wallet ──────────────────────────────────────────────────────
-
-.walletLabel {
-    position: absolute;
-    bottom: -60px + 80px; // Inside the wallet
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 55;
-    pointer-events: none;
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(180, 140, 80, 0.5);
-    font-weight: 700;
-}
-
-// ─── Drag hint ───────────────────────────────────────────────────────────────
-
-.dragHint {
-    position: absolute;
-    bottom: -60px + 28px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 56;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: rgba(180, 140, 80, 0.4);
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.dragPill {
-    width: 36px;
-    height: 4px;
-    background: rgba(180, 140, 80, 0.3);
-    border-radius: 99px;
-}
-
-// ─── Focus portal ─────────────────────────────────────────────────────────────
-
-.activeOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(6px);
-    z-index: 9000;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s ease;
-
-    &.visible {
-        opacity: 1;
-        pointer-events: auto;
-    }
-}
-
-.closeBtn {
-    position: fixed;
-    top: a.$space-6;
-    right: a.$space-6;
-    width: 48px;
-    height: 48px;
-    background: white;
-    border: 1px solid a.$color-border;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: a.$color-text;
-    cursor: pointer;
-    z-index: 9999;
-    box-shadow: a.$shadow-2;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-    &:hover {
-        background: a.$color-surface-2;
-        transform: scale(1.15) rotate(90deg);
-    }
-}
-
-// ─── Responsive ──────────────────────────────────────────────────────────────
-
-@media (max-width: a.$bp-lg) {
-    .card {
-        width: 260px;
-        height: 265px;
-        --trans-x: calc(var(--display-index) * 110px);
-        --rot-z: calc(var(--display-index) * 12deg);
-    }
+    opacity: 0.95;
+    line-height: 1.5;
+    font-family: a.$font-sans;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: a.$bp-md) {
-    .walletContainer {
-        height: 580px; // Increased to fit taller cards
-        padding: 0 a.$space-4;
-    }
-
-    .card {
-        bottom: 0;
-        width: 220px;
-        height: 180px; // Taller for better text fit
-        --center-lift: calc((1 - min(1, var(--abs-index))) * -28px);
-        --trans-x: calc(var(--display-index) * 85px);
-        --rot-z: calc(var(--display-index) * 9deg);
-
-        display: none;
-
-        &[style*="--display-index: 0"],
-        &[style*="--display-index: 1"],
-        &[style*="--display-index: -1"],
-        &[style*="--display-index: 2"],
-        &[style*="--display-index: -2"] {
-            display: block;
-        }
-    }
-
-    .cardInner {
-        padding: a.$space-4;
-        border-radius: 14px;
-    }
-
     .cardTitle {
-        font-size: 14px;
-        margin-bottom: a.$space-2;
+        font-size: 16px;
     }
 
     .cardContent {
-        font-size: 11px;
-    }
-
-    .cardsWrapper {
-        bottom: 220px; // Raised significantly to show cards above wallet
-    }
-}
-
-@media (max-width: a.$bp-sm) {
-    .walletContainer {
-        height: 540px;
-    }
-
-    .card {
-        width: 190px;
-        height: 160px;
-        --trans-x: calc(var(--display-index) * 75px);
-        --rot-z: calc(var(--display-index) * 8deg);
-    }
-
-    .cardsWrapper {
-        bottom: 200px;
+        font-size: 12px;
     }
 }

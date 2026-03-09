@@ -18,11 +18,31 @@ export const translations = {
             label: "Señales Estratégicas",
             drag: "deslizá",
             cards: [
-                { title: "Incrementalidad real", desc: "No atribuible: incremental. Experimentos y lógica de lift." },
-                { title: "Revenue incremental", desc: "Crecimiento rentable, no “mejores métricas”." },
-                { title: "Curvas marginales", desc: "Detectar saturación y mover presupuesto con evidencia." },
-                { title: "POAS", desc: "Profit on Ad Spend: contribución, fees, devoluciones, realidad." },
-                { title: "MMM continuo", desc: "Modelo vivo: recalibración y aprendizaje, no un proyecto puntual." }
+                {
+                    title: "Marginal CPA",
+                    desc: "Optimizamos el próximo dólar invertido, no el promedio.",
+                    image: "/assets/signals/digital.webp"
+                },
+                {
+                    title: "MMM + Attribution",
+                    desc: "Decisiones basadas en datos en todos los canales.",
+                    image: "/assets/signals/financial.webp"
+                },
+                {
+                    title: "Incrementality",
+                    desc: "Medimos el impacto real de cada acción.",
+                    image: "/assets/signals/market.webp"
+                },
+                {
+                    title: "Profit Focus",
+                    desc: "Alineados con el bottom-line del negocio.",
+                    image: "/assets/signals/product.webp"
+                },
+                {
+                    title: "Real Time Dashboards",
+                    desc: "Visualización clara de KPIs críticos.",
+                    image: "/assets/signals/commercial.webp"
+                }
             ]
         },
         framework: {
@@ -108,11 +128,31 @@ export const translations = {
             label: "Strategic Signals",
             drag: "slide",
             cards: [
-                { title: "Real Incrementality", desc: "Not just attribution: incremental. Experiments and lift logic." },
-                { title: "Incremental Revenue", desc: "Profitable growth, not just 'better metrics'." },
-                { title: "Marginal Curves", desc: "Detect saturation and reallocate budget with evidence." },
-                { title: "POAS", desc: "Profit on Ad Spend: contribution, fees, returns, reality." },
-                { title: "Continuous MMM", desc: "Dynamic model: continuous recalibration and learning, not a one-off project." }
+                {
+                    title: "Marginal CPA",
+                    desc: "We optimize for the next dollar spent, not the average.",
+                    image: "/assets/signals/digital.webp"
+                },
+                {
+                    title: "MMM + Attribution",
+                    desc: "Data-driven decisions across all channels.",
+                    image: "/assets/signals/financial.webp"
+                },
+                {
+                    title: "Incrementality",
+                    desc: "We measure the real impact of every action.",
+                    image: "/assets/signals/market.webp"
+                },
+                {
+                    title: "Profit Focus",
+                    desc: "Aligned with your business bottom-line.",
+                    image: "/assets/signals/product.webp"
+                },
+                {
+                    title: "Real Time Dashboards",
+                    desc: "Clear visualization of critical KPIs.",
+                    image: "/assets/signals/commercial.webp"
+                }
             ]
         },
         framework: {
