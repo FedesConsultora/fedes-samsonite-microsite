@@ -34,7 +34,7 @@
     @include a.container;
     position: relative;
     display: grid;
-    gap: a.$space-8;
+    gap: a.$space-10;
     align-items: center;
 
     @include a.mq(a.$bp-lg) {
@@ -168,14 +168,13 @@
     box-shadow: a.$shadow-2;
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
     cursor: pointer;
-    position: relative;
 
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.20);
         box-shadow: a.$shadow-3;
 
         video {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
     }
 }
@@ -188,18 +187,8 @@
 }
 
 .mediaCaption {
-    position: absolute;
-    top: a.$space-5;
-    left: a.$space-5;
-    right: a.$space-5;
-    color: white;
-    font-size: 13px;
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(8px);
-    padding: a.$space-3 a.$space-4;
-    border-radius: a.$radius-md;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 5;
+    padding: a.$space-5 a.$space-6 a.$space-6;
+    border-top: 1px solid a.$color-border;
 }
 
 .captionTitle {
