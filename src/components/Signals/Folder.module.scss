@@ -115,19 +115,23 @@
 /* Left positions */
 .paperPos2 {
     transform: translateY(-340px) translateX(-220px) scale(0.95) rotate(-11deg) !important;
+    opacity: 0.95 !important;
 }
 
 .paperPos1 {
     transform: translateY(-280px) translateX(-420px) scale(0.85) rotate(-22deg) !important;
+    opacity: 0.7 !important;
 }
 
 /* Right positions */
 .paperPos4 {
     transform: translateY(-340px) translateX(220px) scale(0.95) rotate(11deg) !important;
+    opacity: 0.95 !important;
 }
 
 .paperPos5 {
     transform: translateY(-280px) translateX(420px) scale(0.85) rotate(22deg) !important;
+    opacity: 0.7 !important;
 }
 
 /* Active focus */

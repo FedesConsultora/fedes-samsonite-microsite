@@ -20,6 +20,7 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint 
     const [isOpen, setIsOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const containerRef = useRef(null);
+    const folderRef = useRef(null);
     const [touchStart, setTouchStart] = useState(null);
     const autoCycleTimeoutRef = useRef(null);
 
@@ -38,32 +39,42 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint 
     };
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
+        // Observer for OPENING: watches the folder element, fires when 100% visible
+        const openObserver = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    // Delay the animation so the user sees the folder before it fans out
-                    setTimeout(() => {
-                        setIsOpen(true);
-                        startAutoCycle();
-                    }, 500);
-                } else {
+                if (entry.intersectionRatio >= 1.0) {
+                    setIsOpen(true);
+                    startAutoCycle();
+                }
+            },
+            { threshold: 1.0 }
+        );
+
+        // Observer for CLOSING: watches the full container (folder + cards area)
+        // Closes when more than 80% of the area has left the viewport
+        const closeObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.intersectionRatio < 0.4) {
                     setIsOpen(false);
                     stopAutoCycle();
                 }
             },
-            {
-                threshold: 0.2,
-                rootMargin: "-250px 0px"
-            }
+            { threshold: [0, 0.2] }
         );
 
+        if (folderRef.current) {
+            openObserver.observe(folderRef.current);
+        }
         if (containerRef.current) {
-            observer.observe(containerRef.current);
+            closeObserver.observe(containerRef.current);
         }
 
         return () => {
+            if (folderRef.current) {
+                openObserver.unobserve(folderRef.current);
+            }
             if (containerRef.current) {
-                observer.unobserve(containerRef.current);
+                closeObserver.unobserve(containerRef.current);
             }
             stopAutoCycle();
         };
@@ -119,7 +130,10 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
-            <div className={`${styles.folder} ${isOpen ? styles.open : ''}`}>
+            <div
+                ref={folderRef}
+                className={`${styles.folder} ${isOpen ? styles.open : ''}`}
+            >
                 <div className={styles.folderBack}>
                     {items.map((item, i) => {
                         const total = items.length;
