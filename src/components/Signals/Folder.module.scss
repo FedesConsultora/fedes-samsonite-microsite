@@ -55,7 +55,7 @@
     border-radius: 4px 24px 12px 12px;
     transform-origin: bottom;
     // Opening animation
-    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 50; // They hide behind this
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
@@ -84,9 +84,9 @@
     border-radius: 18px;
     // Slowest sliding transition
     transition:
-        transform 1.3s cubic-bezier(0.23, 1, 0.32, 1),
-        opacity 1s ease,
-        visibility 1s ease;
+        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.6s ease,
+        visibility 0.6s ease;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     z-index: 10;
@@ -114,20 +114,20 @@
 
 /* Left positions */
 .paperPos2 {
-    transform: translateY(-340px) translateX(-200px) scale(0.95) rotate(-11deg) !important;
+    transform: translateY(-340px) translateX(-220px) scale(0.95) rotate(-11deg) !important;
 }
 
 .paperPos1 {
-    transform: translateY(-280px) translateX(-380px) scale(0.85) rotate(-22deg) !important;
+    transform: translateY(-280px) translateX(-420px) scale(0.85) rotate(-22deg) !important;
 }
 
 /* Right positions */
 .paperPos4 {
-    transform: translateY(-340px) translateX(200px) scale(0.95) rotate(11deg) !important;
+    transform: translateY(-340px) translateX(220px) scale(0.95) rotate(11deg) !important;
 }
 
 .paperPos5 {
-    transform: translateY(-280px) translateX(380px) scale(0.85) rotate(22deg) !important;
+    transform: translateY(-280px) translateX(420px) scale(0.85) rotate(22deg) !important;
 }
 
 /* Active focus */
@@ -147,43 +147,148 @@
     }
 
     .paperPos3 {
-        transform: translateY(-320px) translateX(0) scale(1.05) !important;
+        transform: translateY(-320px) translateX(0) scale(1.1) !important;
     }
 
     .paperPos2 {
-        transform: translateY(-290px) translateX(-180px) scale(0.9) rotate(-10deg) !important;
+        transform: translateY(-290px) translateX(-150px) scale(0.95) rotate(-10deg) !important;
+    }
+
+    .paperPos1 {
+        transform: translateY(-240px) translateX(-300px) scale(0.85) rotate(-20deg) !important;
     }
 
     .paperPos4 {
-        transform: translateY(-290px) translateX(180px) scale(0.9) rotate(10deg) !important;
+        transform: translateY(-290px) translateX(150px) scale(0.95) rotate(10deg) !important;
+    }
+
+    .paperPos5 {
+        transform: translateY(-240px) translateX(300px) scale(0.85) rotate(20deg) !important;
     }
 }
 
 @media (max-width: a.$bp-md) {
     .folderContainer {
-        height: 600px;
+        height: 520px;
     }
 
     .folder {
-        width: 200px;
-        height: 120px;
-        margin-top: 300px;
+        width: 220px;
+        height: 130px;
+        margin-top: 260px;
     }
 
     .paper {
-        width: 180px;
-        height: 260px;
+        width: 190px;
+        height: 280px;
     }
 
     .paperPos3 {
-        transform: translateY(-240px) translateX(0) scale(1.05) !important;
+        transform: translateY(-260px) translateX(0) scale(1.15) !important;
     }
 
     .paperPos2 {
-        transform: translateY(-210px) translateX(-140px) scale(0.85) rotate(-8deg) !important;
+        transform: translateY(-230px) translateX(-70px) scale(0.95) rotate(-6deg) !important;
+        opacity: 0.9 !important;
+    }
+
+    .paperPos1 {
+        transform: translateY(-190px) translateX(-130px) scale(0.85) rotate(-14deg) !important;
+        opacity: 0.6 !important;
+        visibility: visible !important;
     }
 
     .paperPos4 {
-        transform: translateY(-210px) translateX(140px) scale(0.85) rotate(8deg) !important;
+        transform: translateY(-230px) translateX(70px) scale(0.95) rotate(6deg) !important;
+        opacity: 0.9 !important;
+    }
+
+    .paperPos5 {
+        transform: translateY(-190px) translateX(130px) scale(0.85) rotate(14deg) !important;
+        opacity: 0.6 !important;
+        visibility: visible !important;
+    }
+}
+
+
+@media (max-width: a.$bp-sm) {
+    .folderContainer {
+        height: 480px;
+    }
+
+    .folder {
+        width: 170px;
+        height: 100px;
+        margin-top: 240px;
+    }
+
+    .paper {
+        width: 155px;
+        height: 230px;
+    }
+
+    .paperPos3 {
+        transform: translateY(-230px) translateX(0) scale(1.1) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .paperPos2 {
+        transform: translateY(-210px) translateX(-45px) scale(0.95) rotate(-5deg) !important;
+        opacity: 0.9 !important;
+        visibility: visible !important;
+    }
+
+    .paperPos1 {
+        transform: translateY(-180px) translateX(-85px) scale(0.85) rotate(-12deg) !important;
+        opacity: 0.5 !important;
+        visibility: visible !important;
+    }
+
+    .paperPos4 {
+        transform: translateY(-210px) translateX(45px) scale(0.95) rotate(5deg) !important;
+        opacity: 0.9 !important;
+        visibility: visible !important;
+    }
+
+    .paperPos5 {
+        transform: translateY(-180px) translateX(85px) scale(0.85) rotate(12deg) !important;
+        opacity: 0.5 !important;
+        visibility: visible !important;
+    }
+
+    .folder::before {
+        width: 65px;
+        height: 15px;
+        top: -15px;
+    }
+}
+
+
+
+.hintText {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: a.$color-muted;
+    opacity: 0.6;
+    animation: fadeInOut 2s infinite ease-in-out;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 100;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.8;
     }
 }

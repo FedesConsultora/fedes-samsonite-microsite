@@ -48,6 +48,7 @@ export default function Signals() {
                 <Folder
                     items={folderItems}
                     color="#b08d6a" // Light brown / tan leather color
+                    hint={t.signals.drag}
                 />
             </motion.div>
         </section>

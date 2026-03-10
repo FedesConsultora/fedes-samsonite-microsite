@@ -46,15 +46,15 @@
     background: #000;
     border-radius: a.$radius-xl;
     overflow: hidden;
-    aspect-ratio: 16/9; // Horizontal by default on mobile
-    max-width: 320px;
+    aspect-ratio: 9/16;
+    max-width: 280px;
     margin-inline: auto;
     border: 1px solid a.$color-border;
     box-shadow: a.$shadow-2;
     position: relative;
 
     @include a.mq(a.$bp-lg) {
-        aspect-ratio: 9/16; // Vertical on desktop
+        max-width: 320px;
     }
 }
 
@@ -142,4 +142,20 @@
     color: a.$color-muted;
     font-size: 13px;
     opacity: 0.8;
+}
+
+.desktopBr {
+    display: inline;
+
+    @media (max-width: a.$bp-lg) {
+        display: none;
+    }
+}
+
+.mobileBr {
+    display: none;
+
+    @media (max-width: a.$bp-lg) {
+        display: inline;
+    }
 }

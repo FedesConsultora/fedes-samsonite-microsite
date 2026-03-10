@@ -16,26 +16,44 @@ const darkenColor = (hex, percent) => {
     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
-const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '' }) => {
+const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint = '' }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const containerRef = useRef(null);
+    const [touchStart, setTouchStart] = useState(null);
+    const autoCycleTimeoutRef = useRef(null);
+
+    // Function to start/reset the auto-cycle
+    const startAutoCycle = () => {
+        stopAutoCycle();
+        autoCycleTimeoutRef.current = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % items.length);
+        }, 3500); // Rotate every 3.5 seconds
+    };
+
+    const stopAutoCycle = () => {
+        if (autoCycleTimeoutRef.current) {
+            clearInterval(autoCycleTimeoutRef.current);
+        }
+    };
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // Trigger open when the folder is at least 30% visible in the viewport
                 if (entry.isIntersecting) {
-                    setIsOpen(true);
+                    // Delay the animation so the user sees the folder before it fans out
+                    setTimeout(() => {
+                        setIsOpen(true);
+                        startAutoCycle();
+                    }, 500);
                 } else {
                     setIsOpen(false);
-                    // Optional: reset index when closing
-                    // setActiveIndex(0);
+                    stopAutoCycle();
                 }
             },
             {
-                threshold: 0.3,
-                rootMargin: "-100px 0px" // Add some margin so it doesn't flip at the very edge
+                threshold: 0.2,
+                rootMargin: "-250px 0px"
             }
         );
 
@@ -47,8 +65,9 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '' }) => 
             if (containerRef.current) {
                 observer.unobserve(containerRef.current);
             }
+            stopAutoCycle();
         };
-    }, []);
+    }, [items.length]);
 
     const folderStyle = {
         '--folder-color': color,
@@ -58,11 +77,38 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '' }) => 
 
     const handleCardClick = (e, displayIndex) => {
         e.stopPropagation();
+        stopAutoCycle(); // Pause auto-rotation on interaction
         if (displayIndex < 0) {
             setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
         } else if (displayIndex > 0) {
             setActiveIndex((prev) => (prev + 1) % items.length);
         }
+        // Optional: resume after a long delay
+        setTimeout(startAutoCycle, 5000);
+    };
+
+    // Touch handlers for swiping
+    const handleTouchStart = (e) => {
+        stopAutoCycle();
+        setTouchStart(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = (e) => {
+        if (!touchStart) return;
+        const touchEnd = e.changedTouches[0].clientX;
+        const diff = touchStart - touchEnd;
+
+        if (Math.abs(diff) > 40) { // Threshold for swipe
+            if (diff > 0) {
+                // Swipe left -> Next
+                setActiveIndex((prev) => (prev + 1) % items.length);
+            } else {
+                // Swipe right -> Prev
+                setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
+            }
+        }
+        setTouchStart(null);
+        setTimeout(startAutoCycle, 5000);
     };
 
     return (
@@ -70,6 +116,8 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '' }) => 
             ref={containerRef}
             className={`${styles.folderContainer} ${className}`}
             style={folderStyle}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
         >
             <div className={`${styles.folder} ${isOpen ? styles.open : ''}`}>
                 <div className={styles.folderBack}>
@@ -104,6 +152,11 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '' }) => 
                     <div className={styles.folderFront}></div>
                 </div>
             </div>
+            {isOpen && (
+                <div className={styles.hintText}>
+                    {hint}
+                </div>
+            )}
         </div>
     );
 };

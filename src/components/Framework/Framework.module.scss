@@ -45,8 +45,8 @@
     position: relative;
 
     @media (max-width: a.$bp-lg) {
-        max-width: 100%;
-        aspect-ratio: 16/9; // Horizontal on mobile to take less space
+        max-width: 280px;
+        aspect-ratio: 9/16;
     }
 }
 

@@ -8,7 +8,7 @@ export const translations = {
         },
         hero: {
             title: "Si quieren una agencia, hay muchas.",
-            subtitle: "Si quieren un partner\nde incrementalidad, conversemos.",
+            subtitle: "Si quieren un partner \n de incrementalidad, conversemos.",
             ctaPrimary: "Conversemos",
             ctaSecondary: "Nuestro Framework"
         },

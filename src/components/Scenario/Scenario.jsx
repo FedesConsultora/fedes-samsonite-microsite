@@ -35,7 +35,7 @@ const cases = [
     }
 ];
 
-function VideoCard({ item }) {
+function VideoCard({ item, className = "" }) {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
@@ -63,7 +63,7 @@ function VideoCard({ item }) {
 
     return (
         <motion.div
-            className={styles.videoCard}
+            className={`${styles.videoCard} ${className}`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={togglePlay}
@@ -146,7 +146,11 @@ export default function Scenario() {
                     dragElastic={0.1}
                 >
                     {displayItems.map((item, idx) => (
-                        <VideoCard key={`${item.id}-${idx}`} item={item} />
+                        <VideoCard
+                            key={`${item.id}-${idx}`}
+                            item={item}
+                            className={idx === 0 ? styles.horizontal : ""}
+                        />
                     ))}
                 </motion.div>
             </div>

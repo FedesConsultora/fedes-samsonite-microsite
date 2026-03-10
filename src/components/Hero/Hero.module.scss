@@ -89,7 +89,32 @@
     @media (max-width: a.$bp-lg) {
         margin-inline: auto;
     }
+
+    @media (max-width: a.$bp-md) {
+        font-size: 28px;
+    }
+
+    @media (max-width: a.$bp-sm) {
+        font-size: 24px;
+    }
 }
+
+.desktopBr {
+    display: inline;
+
+    @media (max-width: a.$bp-lg) {
+        display: none;
+    }
+}
+
+.mobileBr {
+    display: none;
+
+    @media (max-width: a.$bp-lg) {
+        display: inline;
+    }
+}
+
 
 .actions {
     display: flex;
