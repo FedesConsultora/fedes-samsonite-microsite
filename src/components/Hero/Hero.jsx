@@ -38,14 +38,7 @@ export default function Hero({ onContactClick }) {
                     </h1>
 
                     <p className={styles.subtitle}>
-                        {t.hero.subtitle.includes('\n') ? (
-                            <>
-                                {t.hero.subtitle.split('\n')[0].trim()}
-                                <span className={styles.desktopBr}><br />de </span>
-                                <span className={styles.mobileBr}> de <br /></span>
-                                {t.hero.subtitle.split('\n')[1].trim().replace(/^de\s*/, '')}
-                            </>
-                        ) : t.hero.subtitle}
+                        {t.hero.subtitle}
                     </p>
 
                     <div className={styles.actions}>

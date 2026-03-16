@@ -25,14 +25,7 @@ export default function Invitation({ onContactClick }) {
                     >
                         <div className={styles.card}>
                             <h2 className={styles.title}>
-                                {t.invitation.title.includes('\n') ? (
-                                    <>
-                                        {t.invitation.title.split('\n')[0].trim()}
-                                        <span className={styles.desktopBr}><br />de </span>
-                                        <span className={styles.mobileBr}> de <br /></span>
-                                        {t.invitation.title.split('\n')[1].trim().replace(/^de\s*/, '')}
-                                    </>
-                                ) : t.invitation.title}
+                                {t.invitation.title}
                             </h2>
 
                             <p className={styles.subtitle}>

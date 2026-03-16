@@ -8,7 +8,7 @@ export const translations = {
         },
         hero: {
             kicker: "Partner regional | Media + eCommerce + Analytics",
-            title: "Si estás buscando una agencia, hay muchas.",
+            title: "Si estás buscando una agencia,\nhay muchas.",
             subtitle: "Si estás buscando \n  incrementalidad real, conversemos.",
             ctaPrimary: "Conversemos",
             ctaSecondary: "Nuestro Framework",
@@ -101,7 +101,7 @@ export const translations = {
             }
         },
         invitation: {
-            title: "Si estás buscando un partner\nde incrementalidad, conversemos.",
+            title: "Si estás buscando\nun partner de incrementalidad, conversemos.",
             desc: "Agendemos una conversación de 15 minutos\npara entender tus desafíos.",
             cta: "Agendar conversación",
             caseCaption: "Eficiencia de Ganancia (POAS)"
