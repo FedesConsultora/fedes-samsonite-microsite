@@ -31,7 +31,7 @@ export default function Hero({ onContactClick }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    <div className={styles.kicker}>Partner regional | Media + eCommerce + Analytics</div>
+                    <div className={styles.kicker}>{t.hero.kicker}</div>
 
                     <h1 className={styles.title}>
                         {t.hero.title}
@@ -73,7 +73,7 @@ export default function Hero({ onContactClick }) {
                             className={styles.video}
                         />
                         <div className={styles.mediaCaption}>
-                            <strong>{t.common.successCase}:</strong> Attribution & Incrementality
+                            <strong>{t.common.successCase}:</strong> {t.hero.caseCaption}
                         </div>
                     </div>
                 </motion.div>

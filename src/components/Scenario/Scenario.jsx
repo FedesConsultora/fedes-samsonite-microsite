@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { useLanguage } from "../../i18n/LanguageContext";
 import styles from "./Scenario.module.scss";
 
 // We import the videos from src/assets to let Vite handle them correctly
@@ -11,28 +12,10 @@ import case2Poster from "../../assets/casos-de-exito/case2.webp";
 import case3Video from "../../assets/casos-de-exito/case3.webm";
 import case3Poster from "../../assets/casos-de-exito/case3.webp";
 
-const cases = [
-    {
-        id: 1,
-        title: "Atribución e Incrementalidad",
-        description: "Región Latam · Paid maduro · Escalamiento real",
-        video: case1Video,
-        poster: case1Poster
-    },
-    {
-        id: 2,
-        title: "Curvas Marginales y MMM",
-        description: "Optimización por país y etapa del funnel",
-        video: case2Video,
-        poster: case2Poster
-    },
-    {
-        id: 3,
-        title: "Eficiencia de Ganancia (POAS)",
-        description: "Modelo de contribución directa por SKU",
-        video: case3Video,
-        poster: case3Poster
-    }
+const videoAssets = [
+    { video: case1Video, poster: case1Poster },
+    { video: case2Video, poster: case2Poster },
+    { video: case3Video, poster: case3Poster }
 ];
 
 function VideoCard({ item, className = "" }) {
@@ -89,7 +72,7 @@ function VideoCard({ item, className = "" }) {
             <div className={styles.cardOverlay}></div>
             <div className={styles.cardInfo}>
                 <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <p>{item.desc}</p>
             </div>
 
             <div className={styles.customControls}>
@@ -105,6 +88,7 @@ function VideoCard({ item, className = "" }) {
 }
 
 export default function Scenario() {
+    const { t } = useLanguage();
     const carouselRef = useRef(null);
     const [width, setWidth] = useState(0);
 
@@ -124,15 +108,19 @@ export default function Scenario() {
         };
     }, []);
 
-    const displayItems = cases;
+    // Merge assets with translations
+    const displayItems = t.scenario.cases.map((c, i) => ({
+        ...c,
+        ...videoAssets[i]
+    }));
 
     return (
-        <section id="scenario" className={styles.section} aria-label="Casos de éxito">
+        <section id="scenario" className={styles.section} aria-label={t.scenario.title}>
             <div className={styles.inner}>
                 <header className={styles.header}>
-                    <h2 className={styles.title}>Casos de éxito</h2>
+                    <h2 className={styles.title}>{t.scenario.title}</h2>
                     <p className={styles.subtitle}>
-                        Evidencia visual de nuestra metodología aplicada. No son solo reportes; son decisiones de negocio transformadas en resultados financieros.
+                        {t.scenario.subtitle}
                     </p>
                 </header>
             </div>
@@ -147,7 +135,7 @@ export default function Scenario() {
                 >
                     {displayItems.map((item, idx) => (
                         <VideoCard
-                            key={`${item.id}-${idx}`}
+                            key={idx}
                             item={item}
                             className={idx === 0 ? styles.horizontal : ""}
                         />

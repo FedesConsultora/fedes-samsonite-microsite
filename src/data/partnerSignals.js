@@ -1,10 +1,10 @@
-import commercial from "../assets/onboarding/commercial.webp";
-import digital from "../assets/onboarding/digital.webp";
-import financial from "../assets/onboarding/financial.webp";
-import identity from "../assets/onboarding/identity.webp";
-import market from "../assets/onboarding/market.webp";
-import org from "../assets/onboarding/org.webp";
-import product from "../assets/onboarding/product.webp";
+const commercial = "/assets/signals/commercial.webp";
+const digital = "/assets/signals/digital.webp";
+const financial = "/assets/signals/financial.webp";
+const identity = "/assets/signals/identity.webp";
+const market = "/assets/signals/market.webp";
+const org = "/assets/signals/org.webp";
+const product = "/assets/signals/product.webp";
 
 export const partnerSignals = [
     {
@@ -31,25 +31,5 @@ export const partnerSignals = [
         title: "MMM continuo", title_en: "Continuous MMM",
         desc: "Modelo vivo: recalibración y aprendizaje, no un proyecto puntual.", desc_en: "Dynamic model: continuous recalibration and learning, not a one-off project.",
         image: commercial
-    },
-    {
-        title: "Reportería accionable", title_en: "Actionable Reporting",
-        desc: "Decisión y recomendación, no un PDF para archivar.", desc_en: "Decisions and recommendations over static reports.",
-        image: org
-    },
-    {
-        title: "GA4 / MER / LTV", title_en: "GA4 / MER / LTV",
-        desc: "Medición con foco en negocio, no en plataforma.", desc_en: "Business-focused measurement, not just platform metrics.",
-        image: identity
-    },
-    {
-        title: "SEO técnico estratégico", title_en: "Strategic Technical SEO",
-        desc: "Estructura + demanda: performance que no depende solo de paid.", desc_en: "Structure + demand: performance independent of paid media.",
-        image: digital
-    },
-    {
-        title: "Presencia Latam", title_en: "Latam Presence",
-        desc: "Operación regional real con equipo local.", desc_en: "Real regional operation with local teams.",
-        image: market
     }
 ];

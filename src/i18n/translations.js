@@ -1,20 +1,22 @@
 export const translations = {
     es: {
         nav: {
-            why: "¿Porqué Fedes?",
+            why: "Por qué Fedes",
             how: "Cómo trabajamos",
-            latam: "Latam",
+            latam: "Operación LATAM",
             contact: "Conversemos"
         },
         hero: {
-            title: "Si quieren una agencia, hay muchas.",
-            subtitle: "Si quieren un partner \n de incrementalidad, conversemos.",
+            kicker: "Partner regional | Media + eCommerce + Analytics",
+            title: "Si estás buscando una agencia, hay muchas.",
+            subtitle: "Si estás buscando \n  incrementalidad real, conversemos.",
             ctaPrimary: "Conversemos",
-            ctaSecondary: "Nuestro Framework"
+            ctaSecondary: "Nuestro Framework",
+            caseCaption: "Atribución e Incrementalidad"
         },
         signals: {
-            title: "¿Porqué Fedes?",
-            subtitle: "No lo explicamos con powerpoint. Operamos con un modelo que defiende el margen y la incrementalidad.",
+            title: "Por qué Fedes",
+            subtitle: "No lo explicamos con presentaciones. Operamos con un modelo que defiende margen, incrementalidad y decisiones de inversión.",
             label: "Señales Estratégicas",
             drag: "deslizá",
             cards: [
@@ -47,25 +49,47 @@ export const translations = {
         },
         framework: {
             title: "Nuestro Framework",
-            subtitle: "Un modelo operativo diseñado para la escala y la rentabilidad absoluta.",
+            subtitle: "Un modelo operativo pensado para escalar inversión con lógica financiera, no sólo publicitaria.",
             steps: [
-                { title: "Diagnóstico de Incrementalidad", desc: "Entendemos qué parte de tu venta es inercial y qué es real por pauta." },
-                { title: "Estructura de Datos (eComm)", desc: "Auditamos GA4, Server-Side y conversiones para que el dato sea ley." },
-                { title: "Planificación de POAS", desc: "No ROAS. Buscamos rentabilidad neta considerando tus márgenes." },
-                { title: "MMM Continuo", desc: "Modelado que calibra la inversión cruzando canales y realidades locales." },
-                { title: "Operación de Escala", desc: "Ejecución táctica con foco en curvas marginales: no quemar presupuesto." },
-                { title: "Entregables a medida", desc: "Reportes ad-hoc operativos o financieros según necesite tu equipo." }
+                { title: "Diagnóstico de incrementalidad", desc: "Entendemos qué parte de la venta es inercial y qué parte responde realmente a la inversión en medios." },
+                { title: "Arquitectura de datos (e-commerce)", desc: "Auditamos GA4, server-side tracking y conversiones para asegurar que el dato sea confiable y accionable." },
+                { title: "Planificación bajo lógica POAS", desc: "No optimizamos ROAS, sino rentabilidad neta considerando márgenes, contribución y contexto comercial." },
+                { title: "MMM continuo", desc: "Modelado que calibra inversión cruzando canales, mercados y variables externas." },
+                { title: "Operación de escala", desc: "Ejecución táctica basada en curvas marginales: invertir donde el retorno todavía crece." },
+                { title: "Entregables accionables", desc: "Reportes operativos o financieros según lo requiera el equipo: marketing, eCommerce o dirección." }
+            ],
+            caseCaption: "Optimización Marginal & MMM"
+        },
+        scenario: {
+            title: "Casos de éxito",
+            subtitle: "Evidencia visual de nuestra metodología aplicada. No son solo reportes; son decisiones de negocio transformadas en resultados financieros.",
+            cases: [
+                {
+                    title: "Atribución e Incrementalidad",
+                    desc: "Región Latam · Paid maduro · Escalamiento real"
+                },
+                {
+                    title: "Curvas Marginales y MMM",
+                    desc: "Optimización por país y etapa del funnel"
+                },
+                {
+                    title: "Eficiencia de Ganancia (POAS)",
+                    desc: "Modelo de contribución directa por SKU"
+                }
             ]
         },
         presence: {
-            title: "Estructura Regional",
-            subtitle: "Capacidad Operativa Real",
-            lead: "Latam no es una lista de países. Es una operación coordinada con cadencia, continuidad y responsables locales.",
-            opsTitle: "Red de Operación",
+            title: "Estructura regional",
+            subtitle: "Capacidad operativa real",
+            lead: "LATAM no es una lista de países. Es una operación coordinada con cadencia, continuidad y responsables locales.",
+            opsTitle: "Red de operación",
             features: [
-                { title: "Cadencia Ejecutiva:", desc: "Reporting semanal/quincenal + comité estratégico mensual." },
-                { title: "Continuidad Regional:", desc: "Workflows unificados y documentación centralizada." },
-                { title: "Coordinación Eficiente:", desc: "Operación remota optimizada por husos horarios." }
+                { title: "Cadencia ejecutiva:", desc: "Reporting semanal o quincenal, más comité estratégico mensual." },
+                { title: "Continuidad regional:", desc: "Workflows unificados y documentación centralizada para todos los mercados." },
+                { title: "Coordinación eficiente:", desc: "Operación remota optimizada por husos horarios y equipos distribuidos." },
+
+
+
             ],
             countries: {
                 MX: "México",
@@ -77,12 +101,13 @@ export const translations = {
             }
         },
         invitation: {
-            title: "Si quieren un partner\nde incrementalidad, conversemos.",
-            desc: "Agendemos una llamada de 15 minutos\npara entender tus desafíos.",
-            cta: "Agendar Llamada"
+            title: "Si estás buscando un partner\nde incrementalidad, conversemos.",
+            desc: "Agendemos una conversación de 15 minutos\npara entender tus desafíos.",
+            cta: "Agendar conversación",
+            caseCaption: "Eficiencia de Ganancia (POAS)"
         },
         contactModal: {
-            title: "Agendar Conversación",
+            title: "Agendar conversación",
             subtitle: "Iniciemos una conversación estratégica sobre vuestro ecosistema digital.",
             name: "Nombre",
             company: "Empresa",
@@ -95,36 +120,38 @@ export const translations = {
             options: [
                 "Incrementalidad & MMM",
                 "Estrategia eCommerce",
-                "Analytics & Atribución",
+                "Analytics y atribución",
                 "Otros"
             ],
             submit: "Enviar mensaje estratégico →",
             sending: "Enviando...",
             successTitle: "¡Despegamos!",
-            successText: "Tu mensaje ha sido enviado directamente a nuestro equipo estratégico. Te contactaremos en las próximas 24hs para coordinar.",
+            successText: "Tu mensaje ha sido enviado con éxito a nuestro equipo estratégico. Te contactaremos en las próximas 24hs para coordinar.",
             close: "Cerrar"
         },
         common: {
-            successCase: "Caso de Éxito",
+            successCase: "Caso de éxito",
             backToTop: "Volver arriba"
         }
     },
     en: {
         nav: {
-            why: "Why Fedes?",
+            why: "Why Fedes",
             how: "How we work",
-            latam: "Latam",
+            latam: "LATAM",
             contact: "Let's talk"
         },
         hero: {
-            title: "If you want an agency, there are many.",
-            subtitle: "If you want an incrementality partner,\nlet's talk.",
+            kicker: "Regional Partner | Media + eCommerce + Analytics",
+            title: "If you are looking for an agency, there are many.",
+            subtitle: "If you are looking for an incrementality partner,\nlet's talk.",
             ctaPrimary: "Let's talk",
-            ctaSecondary: "Our Framework"
+            ctaSecondary: "Our Framework",
+            caseCaption: "Attribution & Incrementality"
         },
         signals: {
-            title: "Why Fedes?",
-            subtitle: "We don't explain with powerpoints. We operate with a model that defends margin and incrementality.",
+            title: "Why Fedes",
+            subtitle: "We don't explain with presentations. We operate with a model that defends margin and incrementality.",
             label: "Strategic Signals",
             drag: "slide",
             cards: [
@@ -159,23 +186,42 @@ export const translations = {
             title: "Our Framework",
             subtitle: "An operating model designed for scale and absolute profitability.",
             steps: [
-                { title: "Incrementality Diagnosis", desc: "We understand what part of your sales is organic and what is driven by media." },
-                { title: "Data Structure (eComm)", desc: "We audit GA4, Server-Side, and conversions so data is the rule." },
-                { title: "POAS Planning", desc: "Not ROAS. We look for net profitability considering your margins." },
+                { title: "Incrementality diagnosis", desc: "We understand what part of your sales is organic and what is driven by media." },
+                { title: "Data dtructure (eComm)", desc: "We audit GA4, Server-Side, and conversions so data is the rule." },
+                { title: "POAS planning", desc: "Not ROAS. We look for net profitability considering your margins." },
                 { title: "Continuous MMM", desc: "Modeling that calibrates investment across channels and local realities." },
-                { title: "Scale Operation", desc: "Tactical execution focused on marginal curves: don't burn budget." },
-                { title: "Custom Deliverables", desc: "Ad-hoc operational or financial reports as your team needs." }
+                { title: "Scale operation", desc: "Tactical execution focused on marginal curves: don't burn budget." },
+                { title: "Custom deliverables", desc: "Ad-hoc operational or financial reports as your team needs." }
+            ],
+            caseCaption: "Marginal Optimization & MMM"
+        },
+        scenario: {
+            title: "Success Stories",
+            subtitle: "Visual evidence of our applied methodology. These are not just reports; they are business decisions transformed into financial results.",
+            cases: [
+                {
+                    title: "Attribution & Incrementality",
+                    desc: "Latam Region · Mature Paid · Real Scaling"
+                },
+                {
+                    title: "Marginal Curves & MMM",
+                    desc: "Optimization by country and funnel stage"
+                },
+                {
+                    title: "Profit Efficiency (POAS)",
+                    desc: "Direct contribution model by SKU"
+                }
             ]
         },
         presence: {
-            title: "Regional Structure",
-            subtitle: "Real Operational Capability",
-            lead: "Latam is not just a list of countries. It is a coordinated operation with cadence, continuity, and local leads.",
-            opsTitle: "Operational Network",
+            title: "Regional structure",
+            subtitle: "Real operational capability",
+            lead: "LATAM is not just a list of countries. It is a coordinated operation with cadence, continuity, and local leads.",
+            opsTitle: "Operational network",
             features: [
-                { title: "Executive Cadence:", desc: "Weekly/bi-weekly reporting + monthly strategic committee." },
-                { title: "Regional Continuity:", desc: "Unified workflows and centralized documentation." },
-                { title: "Efficient Coordination:", desc: "Remote operation optimized by time zones." }
+                { title: "Executive cadence:", desc: "Weekly/bi-weekly reporting + monthly strategic committee." },
+                { title: "Regional continuity:", desc: "Unified workflows and centralized documentation." },
+                { title: "Efficient coordination:", desc: "Remote operation optimized by time zones." }
             ],
             countries: {
                 MX: "Mexico",
@@ -189,14 +235,15 @@ export const translations = {
         invitation: {
             title: "If you want an incrementality partner,\nlet's talk.",
             desc: "Let's schedule a 15-minute call\nto understand your challenges.",
-            cta: "Schedule Call"
+            cta: "Schedule call",
+            caseCaption: "Profit Efficiency (POAS)"
         },
         contactModal: {
-            title: "Schedule a Conversation",
+            title: "Schedule a conversation",
             subtitle: "Let's start a strategic conversation about your digital ecosystem.",
             name: "Name",
             company: "Company",
-            email: "Corporate Email",
+            email: "Corporate email",
             subject: "Subject",
             placeholderName: "Your name",
             placeholderCompany: "Your company",
@@ -204,18 +251,18 @@ export const translations = {
             selectOption: "Select an option",
             options: [
                 "Incrementality & MMM",
-                "eCommerce Strategy",
-                "Analytics & Attribution",
+                "eCommerce strategy",
+                "Analytics & attribution",
                 "Other"
             ],
-            submit: "Send strategic message →",
+            submit: "Send message →",
             sending: "Sending...",
             successTitle: "Liftoff!",
             successText: "Your message has been sent directly to our strategic team. We will contact you within the next 24 hours to coordinate.",
             close: "Close"
         },
         common: {
-            successCase: "Success Case",
+            successCase: "Success case",
             backToTop: "Back to top"
         }
     }

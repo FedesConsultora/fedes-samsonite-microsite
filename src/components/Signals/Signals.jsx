@@ -2,25 +2,30 @@ import { motion } from "framer-motion";
 import styles from "./Signals.module.scss";
 import { useLanguage } from "../../i18n/LanguageContext";
 import Folder from "./Folder";
+import { partnerSignals } from "../../data/partnerSignals";
 
 export default function Signals() {
-    const { t } = useLanguage();
-    const cardsData = t.signals.cards;
+    const { lang, t } = useLanguage();
 
-    // We transform the card data into components for the Folder items
-    const folderItems = cardsData.map((s, idx) => (
-        <div key={idx} className={styles.cardItem}>
-            <div
-                className={styles.cardBg}
-                style={{ backgroundImage: `url(${s.image})` }}
-            />
-            <div className={styles.cardOverlay} />
-            <div className={styles.cardInfo}>
-                <h3 className={styles.cardTitle}>{s.title}</h3>
-                <p className={styles.cardContent}>{s.desc}</p>
+    // Usamos los datos de partnerSignals y seleccionamos el contenido según el idioma actual
+    const folderItems = partnerSignals.map((s, idx) => {
+        const title = lang === 'es' ? s.title : s.title_en;
+        const desc = lang === 'es' ? s.desc : s.desc_en;
+
+        return (
+            <div key={idx} className={styles.cardItem}>
+                <div
+                    className={styles.cardBg}
+                    style={{ backgroundImage: `url(${s.image})` }}
+                />
+                <div className={styles.cardOverlay} />
+                <div className={styles.cardInfo}>
+                    <h3 className={styles.cardTitle}>{title}</h3>
+                    <p className={styles.cardContent}>{desc}</p>
+                </div>
             </div>
-        </div>
-    ));
+        );
+    });
 
     return (
         <section id="why-fedes" className={styles.section} aria-label={t.signals.title}>

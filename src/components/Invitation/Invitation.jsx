@@ -66,7 +66,7 @@ export default function Invitation({ onContactClick }) {
                                 className={styles.video}
                             />
                             <div className={styles.videoCaption}>
-                                <strong>{t.common.successCase}:</strong> Profit Efficiency (POAS)
+                                <strong>{t.common.successCase}:</strong> {t.invitation.caseCaption}
                             </div>
                         </div>
                     </motion.div>

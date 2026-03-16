@@ -42,7 +42,7 @@ export default function Framework() {
                                 className={styles.video}
                             />
                             <div className={styles.videoCaption}>
-                                <strong>{t.common.successCase}:</strong> Marginal Optimization & MMM
+                                <strong>{t.common.successCase}:</strong> {t.framework.caseCaption}
                             </div>
                         </div>
                     </motion.div>
