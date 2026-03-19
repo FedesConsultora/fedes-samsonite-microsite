@@ -68,6 +68,40 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: inherit;
     }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customerLogoWrapper {
+    width: 60%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.customerLogo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .folder.open .folderFront {
@@ -271,18 +305,7 @@
 
 
 .hintText {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    color: a.$color-muted;
-    opacity: 0.6;
-    animation: fadeInOut 2s infinite ease-in-out;
-    pointer-events: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    z-index: 100;
+    display: none;
 }
 
 @keyframes fadeInOut {

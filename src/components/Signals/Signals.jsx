@@ -4,7 +4,7 @@ import { useLanguage } from "../../i18n/LanguageContext";
 import Folder from "./Folder";
 import { partnerSignals } from "../../data/partnerSignals";
 
-export default function Signals() {
+export default function Signals({ customerLogo }) {
     const { lang, t } = useLanguage();
 
     // Usamos los datos de partnerSignals y seleccionamos el contenido según el idioma actual
@@ -54,6 +54,7 @@ export default function Signals() {
                     items={folderItems}
                     color="#b08d6a" // Light brown / tan leather color
                     hint={t.signals.drag}
+                    customerLogo={customerLogo}
                 />
             </motion.div>
         </section>

@@ -1,0 +1,87 @@
+@use "../../styles/abstracts" as a;
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: a.$space-6;
+}
+
+.modal {
+    background: linear-gradient(135deg, rgb(153, 152, 152) 0%, #ffffff 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: a.$space-10 a.$space-8;
+    border-radius: 24px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: a.$space-6;
+    margin-bottom: a.$space-8;
+    .logoFedes {
+        height: 20px;
+        width: auto;
+        object-fit: contain;
+    }
+}
+
+.logo {
+    height: 25px;
+    width: auto;
+    object-fit: contain;
+    
+}
+
+
+
+.divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: a.$space-4;
+    letter-spacing: -0.02em;
+}
+
+.message {
+    font-size: 18px;
+    color: #434242;
+    line-height: 1.6;
+    margin-bottom: a.$space-8;
+}
+
+.cta {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: a.$space-4 a.$space-8;
+    border-radius: 100px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        background: #f0f0f0;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}

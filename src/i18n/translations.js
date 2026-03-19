@@ -132,6 +132,11 @@ export const translations = {
         common: {
             successCase: "Caso de éxito",
             backToTop: "Volver arriba"
+        },
+        welcomeModal: {
+            title: "Propuesta Estratégica",
+            message: "Esta landing la hicimos especialmente para Samsonite.",
+            cta: "Explorar propuesta"
         }
     },
     en: {
@@ -264,6 +269,11 @@ export const translations = {
         common: {
             successCase: "Success case",
             backToTop: "Back to top"
+        },
+        welcomeModal: {
+            title: "Strategic Proposal",
+            message: "We created this landing specifically for Samsonite.",
+            cta: "Explore proposal"
         }
     }
 };

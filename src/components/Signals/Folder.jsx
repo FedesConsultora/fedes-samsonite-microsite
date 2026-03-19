@@ -16,7 +16,7 @@ const darkenColor = (hex, percent) => {
     return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
-const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint = '' }) => {
+const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint = '', customerLogo = null }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const containerRef = useRef(null);
@@ -163,7 +163,13 @@ const Folder = ({ color = '#b08d6a', size = 1, items = [], className = '', hint 
                             </div>
                         );
                     })}
-                    <div className={styles.folderFront}></div>
+                    <div className={styles.folderFront}>
+                        {customerLogo && (
+                            <div className={styles.customerLogoWrapper}>
+                                <img src={customerLogo} alt="Customer Logo" className={styles.customerLogo} />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             {isOpen && (
